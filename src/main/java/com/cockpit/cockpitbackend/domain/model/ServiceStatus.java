@@ -1,4 +1,4 @@
-package com.cockpit.cockpitbackend.model;
+package com.cockpit.cockpitbackend.domain.model;
 
 public class ServiceStatus {
 
