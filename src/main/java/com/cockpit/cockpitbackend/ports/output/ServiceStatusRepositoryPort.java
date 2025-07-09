@@ -1,9 +1,11 @@
 package com.cockpit.cockpitbackend.ports.output;
 
 import com.cockpit.cockpitbackend.domain.model.ServiceStatus;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ServiceStatusRepositoryPort {
     List<ServiceStatus> findServices(String name, String status);
 }
