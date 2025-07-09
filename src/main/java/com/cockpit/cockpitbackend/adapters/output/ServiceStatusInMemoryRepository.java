@@ -2,6 +2,7 @@ package com.cockpit.cockpitbackend.adapters.output;
 
 import com.cockpit.cockpitbackend.domain.model.ServiceStatus;
 import com.cockpit.cockpitbackend.ports.output.ServiceStatusRepositoryPort;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Repository
 public class ServiceStatusInMemoryRepository implements ServiceStatusRepositoryPort {
 
     @Override

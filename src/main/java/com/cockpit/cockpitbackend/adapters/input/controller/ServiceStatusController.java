@@ -18,7 +18,7 @@ public class ServiceStatusController {
     public ServiceStatusController(ServiceStatusUseCasePort serviceStatusUseCasePort){
         this.serviceStatusUseCasePort = serviceStatusUseCasePort;
     }
-    @GetMapping("/services")
+    @GetMapping
        public List<ServiceStatus> getServices(@RequestParam(required = false)String name, @RequestParam(required = false)String status){
 
         return serviceStatusUseCasePort.findServices(name,status);

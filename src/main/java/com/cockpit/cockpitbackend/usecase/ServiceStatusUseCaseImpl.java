@@ -12,12 +12,18 @@ public class ServiceStatusUseCaseImpl implements ServiceStatusUseCasePort {
 
     private final ServiceStatusRepositoryPort serviceStatusRepositoryPort;
 
+    //Construtor para injeção de dependência
+    public ServiceStatusUseCaseImpl(ServiceStatusRepositoryPort serviceStatusRepositoryPort) {
+        this.serviceStatusRepositoryPort = serviceStatusRepositoryPort;
+    }
+
+// Implementação do metodo da interface
+@Override
    public List<ServiceStatus> findServices(String name, String status){
 
     return serviceStatusRepositoryPort.findServices(name, status);
-}
 
-         public ServiceStatusUseCaseImpl(ServiceStatusRepositoryPort serviceStatusRepositoryPort){
-              this.serviceStatusRepositoryPort = serviceStatusRepositoryPort;
-          }
+    }
+
+
 }
