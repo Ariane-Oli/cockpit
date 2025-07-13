@@ -1,5 +1,6 @@
 package com.cockpit.cockpitbackend.adapters.output;
 
+import com.cockpit.cockpitbackend.adapters.input.dto.PaginationRequest;
 import com.cockpit.cockpitbackend.domain.model.ServiceStatus;
 import com.cockpit.cockpitbackend.ports.output.ServiceStatusRepositoryPort;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,7 @@ import java.util.stream.Stream;
 public class ServiceStatusInMemoryRepository implements ServiceStatusRepositoryPort {
 
     @Override
-    public List<ServiceStatus> findServices(String name, String status) {
+    public List<ServiceStatus> findServices(String name, String status, PaginationRequest paginationRequest) {
         List<ServiceStatus> services = new ArrayList<>();
         services.add(new ServiceStatus("Banco de dados", "UP"));
         services.add(new ServiceStatus("API de usúarios", "Down"));

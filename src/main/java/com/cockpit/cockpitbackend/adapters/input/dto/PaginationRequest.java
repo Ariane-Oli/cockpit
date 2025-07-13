@@ -17,4 +17,8 @@ public class PaginationRequest {
     public int getSize() {
         return size;
     }
+
+    public PaginationRequest(){
+
+    }
 }
