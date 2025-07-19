@@ -1,11 +1,10 @@
-package com.cockpit.cockpitbackend.adapters.output;
+package com.cockpit.cockpitbackend.adapters.output.repository;
 
 import com.cockpit.cockpitbackend.adapters.input.dto.PaginationRequest;
 import com.cockpit.cockpitbackend.domain.model.ServiceStatus;
 import com.cockpit.cockpitbackend.ports.output.ServiceStatusRepositoryPort;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +31,12 @@ public class ServiceStatusInMemoryRepository implements ServiceStatusRepositoryP
             stream = stream.filter(service -> service.getName().toLowerCase().contains(name.toLowerCase()));
         }
 
+        int page = paginationRequest.getPage();
+        int size = paginationRequest.getSize();
+        int offset = page * size;
+
+        stream = stream.skip(offset).limit(size);
+        System.out.println("Page: " + page + ", Size " + size + ", Offset: " + offset);
         return stream.collect(Collectors.toList());
 
     }
