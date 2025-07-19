@@ -1,6 +1,7 @@
 package com.cockpit.cockpitbackend.usecase;
 
 import com.cockpit.cockpitbackend.adapters.input.dto.PaginationRequest;
+import com.cockpit.cockpitbackend.adapters.output.dto.PaginatedResponse;
 import com.cockpit.cockpitbackend.domain.model.ServiceStatus;
 import com.cockpit.cockpitbackend.ports.input.ServiceStatusUseCasePort;
 import com.cockpit.cockpitbackend.ports.output.ServiceStatusRepositoryPort;
@@ -20,9 +21,27 @@ public class ServiceStatusUseCaseImpl implements ServiceStatusUseCasePort {
 
 // Implementação do metodo da interface
 @Override
-   public List<ServiceStatus> findServices(String name, String status, PaginationRequest paginationRequest){
+   public PaginatedResponse<ServiceStatus> findServices(String name, String status, PaginationRequest paginationRequest){
+   List<ServiceStatus> allFilteredServices = serviceStatusRepositoryPort.findServices(name, status,paginationRequest);
 
-    return serviceStatusRepositoryPort.findServices(name, status, paginationRequest);
+   int page = paginationRequest.getPage();
+   int size = paginationRequest.getSize();
+   long totalElements = allFilteredServices.size();
+   int totalPages = (int) Math.ceil((double) totalElements / size);
+
+   int offset = page * size;
+   List<ServiceStatus> paginatedList = allFilteredServices
+           .stream()
+           .skip(offset)
+           .limit(size)
+           .toList();
+
+   return PaginatedResponse.<ServiceStatus>builder()
+            .content(paginatedList)
+            .size(size)
+            .totalElements(totalElements)
+            .build();
+
 
     }
 
