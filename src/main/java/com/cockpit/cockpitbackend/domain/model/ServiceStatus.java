@@ -1,5 +1,6 @@
 package com.cockpit.cockpitbackend.domain.model;
 
+
 public class ServiceStatus {
 
     private String name;

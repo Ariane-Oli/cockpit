@@ -22,15 +22,15 @@ public class ServiceStatusUseCaseImpl implements ServiceStatusUseCasePort {
 // Implementação do metodo da interface
 @Override
    public PaginatedResponse<ServiceStatus> findServices(String name, String status, PaginationRequest paginationRequest){
-   List<ServiceStatus> allFilteredServices = serviceStatusRepositoryPort.findServices(name, status,paginationRequest);
+   PaginatedResponse<ServiceStatus> allFilteredServices = serviceStatusRepositoryPort.findServices(name, status,paginationRequest);
 
    int page = paginationRequest.getPage();
    int size = paginationRequest.getSize();
-   long totalElements = allFilteredServices.size();
+   long totalElements = allFilteredServices.getContent().size();
    int totalPages = (int) Math.ceil((double) totalElements / size);
 
    int offset = page * size;
-   List<ServiceStatus> paginatedList = allFilteredServices
+   List<ServiceStatus> paginatedList = allFilteredServices.getContent()
            .stream()
            .skip(offset)
            .limit(size)
