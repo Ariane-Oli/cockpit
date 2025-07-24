@@ -12,9 +12,21 @@ public class ServiceStatusEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "nome", nullable = false)
-    private String nome;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "status", nullable = false)
     private String status;
+
+    public Integer getId(){
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus(){
+            return status;
+    }
 }

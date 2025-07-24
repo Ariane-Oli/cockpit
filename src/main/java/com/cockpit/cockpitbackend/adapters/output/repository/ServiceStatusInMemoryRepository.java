@@ -18,10 +18,11 @@ public class ServiceStatusInMemoryRepository implements ServiceStatusRepositoryP
     @Override
     public PaginatedResponse<ServiceStatus> findServices(String name, String status, PaginationRequest paginationRequest) {
         List<ServiceStatus> services = new ArrayList<>();
-        services.add(new ServiceStatus("Banco de dados", "UP"));
-        services.add(new ServiceStatus("API de usúarios", "Down"));
-        services.add(new ServiceStatus("Integração de ERP", "UP"));
-
+        services.add(new ServiceStatus(111, "Banco de dados", "UP"));
+        services.add(new ServiceStatus(112,"API de usuários", "DOWN"));
+        services.add(new ServiceStatus(113,"Integração de ERP", "UP"));
+        services.add(new ServiceStatus(114,"Interfaces", "DOWN"));
+        services.add(new ServiceStatus(115, "Switches", "UP"));
 
         Stream<ServiceStatus> stream = services.stream();
 
