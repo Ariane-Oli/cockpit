@@ -1,10 +1,7 @@
 package com.cockpit.cockpitbackend.adapters.output.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import java.util.List;
 
@@ -17,28 +14,8 @@ public class PaginatedResponse<T>{
     private int page;
     private int size;
     private long totalElements;
+    @JsonProperty("totalPages")
     private int totalPages;
-
-
-    public List<T> getContent() {
-        return content;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public long getTotalElements() {
-        return totalElements;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
 
 }
 

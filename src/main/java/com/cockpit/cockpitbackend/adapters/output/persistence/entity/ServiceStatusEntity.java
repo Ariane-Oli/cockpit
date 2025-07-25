@@ -19,6 +19,7 @@ public class ServiceStatusEntity {
     private String status;
 
     public Integer getId(){
+
         return id;
     }
 
@@ -27,6 +28,7 @@ public class ServiceStatusEntity {
     }
 
     public String getStatus(){
-            return status;
+
+        return status;
     }
 }

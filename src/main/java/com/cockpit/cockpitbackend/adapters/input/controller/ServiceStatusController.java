@@ -5,11 +5,8 @@ import com.cockpit.cockpitbackend.adapters.output.dto.PaginatedResponse;
 import com.cockpit.cockpitbackend.domain.model.ServiceStatus;
 import com.cockpit.cockpitbackend.ports.input.ServiceStatusUseCasePort;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/services")
@@ -21,9 +18,13 @@ public class ServiceStatusController {
         this.serviceStatusUseCasePort = serviceStatusUseCasePort;
     }
     @GetMapping
-       public PaginatedResponse<ServiceStatus> getServices(@RequestParam(required = false)String name, @RequestParam(required = false)String status, PaginationRequest paginationRequest){
+       public PaginatedResponse<ServiceStatus> getServices(
+               @RequestParam(required = false)String name,
+               @RequestParam(required = false)String status,
+               @ModelAttribute PaginationRequest paginationRequest){
 
-        return serviceStatusUseCasePort.findServices(name,status, paginationRequest);
+       PaginatedResponse<ServiceStatus> response = serviceStatusUseCasePort.findServices(name, status, paginationRequest);
+        return response;
 
 
 

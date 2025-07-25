@@ -41,12 +41,13 @@ public class ServiceStatusInMemoryRepository implements ServiceStatusRepositoryP
         int offset = page * size;
 
         long totalElements = filtered.size();
-        int totalPages = (int) Math.ceil((double) totalElements / size);
+        int totalPages = (size == 0) ? 0: (int) Math.ceil(((double) totalElements) / size);
 
         List<ServiceStatus> paginated = filtered.stream()
                 .skip(offset)
                 .limit(size)
                 .collect(Collectors.toList());
+
 
         return PaginatedResponse.<ServiceStatus>builder()
                 .content(paginated)
@@ -56,5 +57,6 @@ public class ServiceStatusInMemoryRepository implements ServiceStatusRepositoryP
                 .totalPages(totalPages)
                 .build();
     }
+
 
 }

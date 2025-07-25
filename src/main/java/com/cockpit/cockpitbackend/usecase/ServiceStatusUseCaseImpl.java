@@ -40,6 +40,8 @@ public class ServiceStatusUseCaseImpl implements ServiceStatusUseCasePort {
             .content(paginatedList)
             .size(size)
             .totalElements(totalElements)
+           .page(page)
+            .totalPages(totalPages)
             .build();
 
 
